@@ -16,6 +16,15 @@ public class SignUpTest {
         WebDriver driver=new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("http://www.kurs-selenium.pl/demo/");
-        
+        driver.findElements(By.xpath("//li[@id='li_myaccount']")).stream().filter(WebElement::isDisplayed)
+                .findFirst().ifPresent(WebElement::click);
+        driver.findElements(By.xpath("//a[text()='  Sign Up']")).get(1).click();
+        driver.findElement(By.name("firstname")).sendKeys("Magda");
+        driver.findElement(By.name("lastname")).sendKeys("Nazwisko");
+        driver.findElement(By.name("phone")).sendKeys("222222222");
+        driver.findElement(By.name("email")).sendKeys("magda@magda.pl");
+        driver.findElement(By.name("password")).sendKeys("Hasełko");
+        driver.findElement(By.name("confirmpassword")).sendKeys("Hasełko");
+        driver.findElement(By.xpath("//button[text()=' Sign Up']")).click();
     }
 }
