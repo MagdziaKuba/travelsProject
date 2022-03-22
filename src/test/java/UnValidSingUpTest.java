@@ -32,5 +32,23 @@ public class UnValidSingUpTest {
         softAssert.assertTrue(errorsText.contains("The Last Name field is required."));
         softAssert.assertAll();
     }
+    @Test
+    public void singUpInvalidEmail() throws InterruptedException {
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver=new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get("http://www.kurs-selenium.pl/demo/");
+        driver.findElements(By.xpath("//li[@id='li_myaccount']")).stream().filter(WebElement::isDisplayed)
+                .findFirst().ifPresent(WebElement::click);
+        driver.findElements(By.xpath("//a[text()='  Sign Up']")).get(1).click();
+        driver.findElement(By.name("email")).sendKeys("magda.pl");
+        driver.findElement(By.xpath("//button[text()=' Sign Up']")).click();
+        Thread.sleep(3000);
+        List<String> errorsText= driver.findElements(By.xpath("//div[@class='alert alert-danger']//p")).stream().map(WebElement::getText)
+                .collect(Collectors.toList());
+        SoftAssert softAssert= new SoftAssert();
+        softAssert.assertTrue(errorsText.contains("The Email field must contain a valid email address."));
+        softAssert.assertAll();
+    }
 
 }
