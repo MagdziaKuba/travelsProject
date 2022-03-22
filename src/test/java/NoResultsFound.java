@@ -18,6 +18,7 @@ public class NoResultsFound {
         driver.get("http://www.kurs-selenium.pl/demo/");
 
 
+
         Thread.sleep(3000);
         driver.findElement(By.name("checkin")).sendKeys("18/05/2022");
         driver.findElement(By.name("checkout")).sendKeys("11/07/2022");
@@ -29,6 +30,7 @@ public class NoResultsFound {
         driver.findElement(By.id("childPlusBtn")).click();
         driver.findElement(By.xpath("//button[text()=' Search']")).click();
         String noFoundText= driver.findElement(By.xpath("/html/body/div[5]/div[5]/div[1]/div[3]/div/div/h2")).getText();
+        //$x("//div[@class='itemscontainer']//h2")
         System.out.println(noFoundText);
         Assert.assertEquals(noFoundText, "No Results Found");
     }
