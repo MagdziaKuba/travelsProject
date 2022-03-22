@@ -22,9 +22,14 @@ public class SignUpTest {
         driver.findElement(By.name("firstname")).sendKeys("Magda");
         driver.findElement(By.name("lastname")).sendKeys("Nazwisko");
         driver.findElement(By.name("phone")).sendKeys("222222222");
-        driver.findElement(By.name("email")).sendKeys("magda@magda.pl");
+        driver.findElement(By.name("email")).sendKeys("mmmmagda@magda.pl");
         driver.findElement(By.name("password")).sendKeys("Hasełko");
         driver.findElement(By.name("confirmpassword")).sendKeys("Hasełko");
         driver.findElement(By.xpath("//button[text()=' Sign Up']")).click();
+
+        String lastname="Nazwisko";
+        Thread.sleep(3000);
+        WebElement heading=driver.findElement(By.xpath("//h3[@class='RTL']"));
+        Assert.assertTrue(heading.getText().contains(lastname));
     }
 }
