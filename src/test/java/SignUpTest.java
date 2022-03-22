@@ -22,7 +22,10 @@ public class SignUpTest {
         driver.findElement(By.name("firstname")).sendKeys("Magda");
         driver.findElement(By.name("lastname")).sendKeys("Nazwisko");
         driver.findElement(By.name("phone")).sendKeys("222222222");
-        driver.findElement(By.name("email")).sendKeys("mmmmagda@magda.pl");
+        //unikalny adress email
+        int randomNumber=(int) (Math.random()*1000);
+        String email="tester"+randomNumber+"@magda.pl";
+        driver.findElement(By.name("email")).sendKeys(email);
         driver.findElement(By.name("password")).sendKeys("Hasełko");
         driver.findElement(By.name("confirmpassword")).sendKeys("Hasełko");
         driver.findElement(By.xpath("//button[text()=' Sign Up']")).click();
