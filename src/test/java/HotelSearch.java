@@ -9,13 +9,10 @@ import org.testng.annotations.Test;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class HotelSearch {
+public class HotelSearch extends BaseTest{
     @Test
     public void searchHotel() throws InterruptedException {
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver=new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("http://www.kurs-selenium.pl/demo/");
+
         driver.findElement(By.xpath("//span[text()='Search by Hotel or City Name']")).click();
         driver.findElement(By.xpath("//div[@id='select2-drop']//input")).sendKeys("Dubai");
         Thread.sleep(3000);

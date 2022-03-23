@@ -9,13 +9,10 @@ import org.testng.asserts.SoftAssert;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class UnValidSingUpTest {
+public class UnValidSingUpTest extends BaseTest{
     @Test
     public void emptyForm() throws InterruptedException {
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver=new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("http://www.kurs-selenium.pl/demo/");
+
         driver.findElements(By.xpath("//li[@id='li_myaccount']")).stream().filter(WebElement::isDisplayed)
                 .findFirst().ifPresent(WebElement::click);
         driver.findElements(By.xpath("//a[text()='  Sign Up']")).get(1).click();

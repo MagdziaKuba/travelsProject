@@ -9,13 +9,9 @@ import org.testng.annotations.Test;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class NoResultsFound {
+public class NoResultsFound extends BaseTest{
     @Test
     public void searchHotel() throws InterruptedException {
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver=new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("http://www.kurs-selenium.pl/demo/");
 
 
 
