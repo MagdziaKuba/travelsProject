@@ -51,11 +51,26 @@ public class HotelSearchPage {
         checkoutInput.sendKeys(checkout);
     }
 
-    public void setTravellers() throws InterruptedException {
+    public void setTravellers(int adultsToAdd, int childToAdd) throws InterruptedException {
         travellersInput.click();
-        Thread.sleep(2000);
-        adultPlusBtn.click();
-        childPlusBtn.click();
+        Thread.sleep(3000);
+        addTraveler(adultPlusBtn,adultsToAdd);
+        addTraveler(childPlusBtn, childToAdd);
+
+        /*for(int z=0; z<adultsToAdd; z++){
+            adultPlusBtn.click();
+        }
+
+        for(int j=0; j<childToAdd; j++){
+            childPlusBtn.click();
+        }*/
+
+    }
+
+    public void addTraveler(WebElement travelerBtn, int numberOfTravelers){
+        for(int j=0; j<numberOfTravelers; j++){
+            travelerBtn.click();
+        }
     }
     public void performSearch(){
         searchButton.click();
