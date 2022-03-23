@@ -1,9 +1,10 @@
+package pl.seleniumdemo.tests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class SignUpTest extends BaseTest{
+public class SignUpTests extends BaseTests {
 
 
     @Test
@@ -29,3 +30,5 @@ public class SignUpTest extends BaseTest{
         Assert.assertTrue(heading.getText().contains(lastname));
     }
 }
+
+
