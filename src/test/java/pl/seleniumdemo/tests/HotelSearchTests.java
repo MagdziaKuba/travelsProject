@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pl.seleniumdemo.pages.HotelSearchPage;
+import pl.seleniumdemo.pages.ResultsPage;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,7 +18,10 @@ public class HotelSearchTests extends BaseTests {
         hotelSearchPage.setTravellers();
         hotelSearchPage.performSearch();
 
-        List<String> hotelNames=driver.findElements(By.xpath("//h4[contains(@class,'list_title')]//b")).stream().map(el -> el.getAttribute("textContent")).collect(Collectors.toList());
+
+        ResultsPage resultsPage=new ResultsPage(driver);
+        List<String> hotelNames=resultsPage.getHotelNames();
+        //List<String> hotelNames=driver.findElements(By.xpath("//h4[contains(@class,'list_title')]//b")).stream().map(el -> el.getAttribute("textContent")).collect(Collectors.toList());
 
         System.out.println(hotelNames.size());
         //zapis lambda
