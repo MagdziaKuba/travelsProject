@@ -1,14 +1,10 @@
 package pl.seleniumdemo.tests;
-import com.fasterxml.jackson.databind.jsontype.impl.AsExistingPropertyTypeSerializer;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pl.seleniumdemo.pages.HotelSearchPage;
 import pl.seleniumdemo.pages.ResultsPage;
-
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 public class HotelSearchTests extends BaseTests {
     @Test

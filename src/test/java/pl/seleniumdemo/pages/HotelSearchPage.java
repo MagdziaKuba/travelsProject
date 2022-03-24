@@ -1,4 +1,5 @@
 package pl.seleniumdemo.pages;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,8 +13,8 @@ public class HotelSearchPage {
     @FindBy(xpath="//div[@id='select2-drop']//input")
     private WebElement searchHotelInput;
 
-    @FindBy(xpath = "//span[@class='select2-match' and text()='Dubai']")
-    private WebElement hotelMatch;
+    /*@FindBy(xpath = "//span[@class='select2-match' and text()='Dubai']")
+    private WebElement hotelMatch;*/
 
     @FindBy(name="checkin")
     private WebElement checkInput;
@@ -33,16 +34,22 @@ public class HotelSearchPage {
     @FindBy(xpath="//button[text()=' Search']")
     private WebElement searchButton;
 
+    private WebDriver driver;
     //konstruktor
     public HotelSearchPage(WebDriver driver){
+
         PageFactory.initElements(driver, this);
+        this.driver=driver;
     }
 
     public void setCity(String cityName) throws InterruptedException {
         searchHotelSpan.click();
         searchHotelInput.sendKeys(cityName);
+        String xpath= String.format("//span[@class='select2-match' and text()='%s']", cityName);
         Thread.sleep(2000);
-        hotelMatch.click();
+        driver.findElement(By.xpath(xpath)).click();
+
+        //hotelMatch.click();
 
     }
 
