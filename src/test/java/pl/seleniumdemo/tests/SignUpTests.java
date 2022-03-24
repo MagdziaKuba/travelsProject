@@ -2,6 +2,7 @@ package pl.seleniumdemo.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import pl.seleniumdemo.model.User;
 import pl.seleniumdemo.pages.HotelSearchPage;
 import pl.seleniumdemo.pages.LoggedUserPage;
 import pl.seleniumdemo.pages.SignUpPage;
@@ -20,6 +21,15 @@ public class SignUpTests extends BaseTests {
 
         HotelSearchPage hotelSearchPage=new HotelSearchPage(driver);
         hotelSearchPage.openSignUpForm();
+
+        /*User user=new User();
+        user.setFirstName("Magda");
+        user.setLastName("Nazwisko");
+        user.setEmail("aaaaamagda@mg.pl");
+        user.setPhone("222222222");
+        user.setPassword("haslooo");
+*/
+
 
         SignUpPage signUpPage=new SignUpPage(driver);
         signUpPage.setFirstName("Magda");
@@ -58,7 +68,6 @@ public class SignUpTests extends BaseTests {
     }
     @Test
     public void singUpInvalidEmail() throws InterruptedException {
-        String lastName="Nazwisko";
 
         HotelSearchPage hotelSearchPage=new HotelSearchPage(driver);
         hotelSearchPage.openSignUpForm();
@@ -66,7 +75,7 @@ public class SignUpTests extends BaseTests {
         SignUpPage signUpPage=new SignUpPage(driver);
 
         signUpPage.fillSignUpForm("Magda","Nazwisko","222222222", "niepoprawny","haslooo","haslooo");
-       
+
         SoftAssert softAssert= new SoftAssert();
         softAssert.assertTrue(signUpPage.getErrors().contains("The Email field must contain a valid email address."));
         softAssert.assertAll();
