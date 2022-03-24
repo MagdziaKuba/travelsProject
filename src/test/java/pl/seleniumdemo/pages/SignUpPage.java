@@ -71,4 +71,14 @@ public class SignUpPage {
         return errors.stream().map(WebElement::getText)
                 .collect(Collectors.toList());
     }
+
+    public void fillSignUpForm(String firstName, String lastName, String phone, String email,String password, String  confirmpassword){
+        firstNameInput.sendKeys(firstName);
+        lastNameInput.sendKeys(lastName);
+        phoneInput.sendKeys(phone);
+        emailInput.sendKeys(email);
+        passwordInput.sendKeys(password);
+        confirmpasswordInput.sendKeys(confirmpassword);
+        signUpButton.click();
+    }
 }

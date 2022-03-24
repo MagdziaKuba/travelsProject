@@ -64,14 +64,9 @@ public class SignUpTests extends BaseTests {
         hotelSearchPage.openSignUpForm();
 
         SignUpPage signUpPage=new SignUpPage(driver);
-        signUpPage.setFirstName("Magda");
-        signUpPage.setLastName(lastName);
-        signUpPage.setEmail("emailNiepoprawny");
-        signUpPage.setPhone("222222222");
-        signUpPage.setPassword("Password");
-        signUpPage.confirmPassword("Password");
-        signUpPage.clickSignUpButton();
 
+        signUpPage.fillSignUpForm("Magda","Nazwisko","222222222", "niepoprawny","haslooo","haslooo");
+       
         SoftAssert softAssert= new SoftAssert();
         softAssert.assertTrue(signUpPage.getErrors().contains("The Email field must contain a valid email address."));
         softAssert.assertAll();
