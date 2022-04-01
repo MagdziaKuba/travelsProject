@@ -74,19 +74,19 @@ public class HotelSearchPage {
     }
 
     public void setDates(String checkin, String checkout){
-        System.out.println("Setting dates "+checkin +" - "+checkout);
+        logger.info("Setting dates "+checkin +" - "+checkout);
         checkInput.sendKeys(checkin);
         checkoutInput.sendKeys(checkout);
-        System.out.println("Setting dates done");
+        logger.info("Setting dates done");
     }
 
     public void setTravellers(int adultsToAdd, int childToAdd) throws InterruptedException {
-        System.out.println("Adding adults: "+adultsToAdd+" and kids: "+childToAdd);
+        logger.info("Adding adults: "+adultsToAdd+" and kids: "+childToAdd);
         travellersInput.click();
         Thread.sleep(3000);
         addTraveler(adultPlusBtn,adultsToAdd);
         addTraveler(childPlusBtn, childToAdd);
-        System.out.println("Adding travelers done");
+        logger.info("Adding travelers done");
         /*for(int z=0; z<adultsToAdd; z++){
             adultPlusBtn.click();
         }
@@ -103,9 +103,9 @@ public class HotelSearchPage {
         }
     }
     public void performSearch(){
-        System.out.println("Performing search");
+        logger.info("Performing search");
         searchButton.click();
-        System.out.println("Performing search done");
+        logger.info("Performing search done");
     }
 
     public void openSignUpForm(){
