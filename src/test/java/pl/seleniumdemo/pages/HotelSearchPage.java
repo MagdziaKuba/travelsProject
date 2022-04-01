@@ -1,4 +1,6 @@
 package pl.seleniumdemo.pages;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -45,8 +47,11 @@ public class HotelSearchPage {
 
 
 
-
+    //pola
     private WebDriver driver;
+
+    private static final Logger logger= LogManager.getLogger();
+
     //konstruktor
     public HotelSearchPage(WebDriver driver){
 
@@ -55,27 +60,33 @@ public class HotelSearchPage {
     }
 
     public void setCity(String cityName) throws InterruptedException {
+        //System.out.println("Setting city "+ cityName);
+        logger.info("Setting city "+ cityName);
         searchHotelSpan.click();
         searchHotelInput.sendKeys(cityName);
         String xpath= String.format("//span[@class='select2-match' and text()='%s']", cityName);
         Thread.sleep(2000);
         driver.findElement(By.xpath(xpath)).click();
-
+        //System.out.println("Setting city done");
+        logger.info("Setting city done");
         //hotelMatch.click();
 
     }
 
     public void setDates(String checkin, String checkout){
+        System.out.println("Setting dates "+checkin +" - "+checkout);
         checkInput.sendKeys(checkin);
         checkoutInput.sendKeys(checkout);
+        System.out.println("Setting dates done");
     }
 
     public void setTravellers(int adultsToAdd, int childToAdd) throws InterruptedException {
+        System.out.println("Adding adults: "+adultsToAdd+" and kids: "+childToAdd);
         travellersInput.click();
         Thread.sleep(3000);
         addTraveler(adultPlusBtn,adultsToAdd);
         addTraveler(childPlusBtn, childToAdd);
-
+        System.out.println("Adding travelers done");
         /*for(int z=0; z<adultsToAdd; z++){
             adultPlusBtn.click();
         }
@@ -92,7 +103,9 @@ public class HotelSearchPage {
         }
     }
     public void performSearch(){
+        System.out.println("Performing search");
         searchButton.click();
+        System.out.println("Performing search done");
     }
 
     public void openSignUpForm(){
