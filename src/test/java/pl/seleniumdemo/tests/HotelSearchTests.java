@@ -1,4 +1,6 @@
 package pl.seleniumdemo.tests;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pl.seleniumdemo.pages.HotelSearchPage;
@@ -9,11 +11,18 @@ import java.util.List;
 public class HotelSearchTests extends BaseTests {
     @Test
     public void searchHotel() throws InterruptedException {
+        ExtentTest test= extentReports.createTest("Search Hotel Test");
+
         HotelSearchPage hotelSearchPage=new HotelSearchPage(driver);
         hotelSearchPage.setCity("Dubai");
+
+        test.log(Status.PASS,"Setting city done");
         hotelSearchPage.setDates("18/05/2022","11/07/2022");
+        test.log(Status.PASS,"Setting data done");
         hotelSearchPage.setTravellers(2,5);
+        test.log(Status.PASS,"Setting travelers done");
         hotelSearchPage.performSearch();
+        test.log(Status.PASS,"performing search done");
 
 
         ResultsPage resultsPage=new ResultsPage(driver);
@@ -28,6 +37,8 @@ public class HotelSearchTests extends BaseTests {
         Assert.assertEquals("Oasis Beach Tower", hotelNames.get(1));
         Assert.assertEquals("Rose Rayhaan Rotana", hotelNames.get(2));
         Assert.assertEquals("Hyatt Regency Perth", hotelNames.get(3));
+        test.log(Status.PASS,"assertions passed");
+
     }
 
     @Test
