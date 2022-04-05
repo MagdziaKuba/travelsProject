@@ -1,28 +1,34 @@
 package pl.seleniumdemo.tests;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pl.seleniumdemo.pages.HotelSearchPage;
 import pl.seleniumdemo.pages.ResultsPage;
+import pl.seleniumdemo.utils.SeleniumHelper;
+
+import java.io.IOException;
 import java.util.List;
 
 
 public class HotelSearchTests extends BaseTests {
     @Test
-    public void searchHotel() throws InterruptedException {
+    public void searchHotel() throws InterruptedException, IOException {
         ExtentTest test= extentReports.createTest("Search Hotel Test");
 
         HotelSearchPage hotelSearchPage=new HotelSearchPage(driver);
         hotelSearchPage.setCity("Dubai");
 
-        test.log(Status.PASS,"Setting city done");
+        test.log(Status.PASS,"Setting city done", SeleniumHelper.getScreenshot(driver));
         hotelSearchPage.setDates("18/05/2022","11/07/2022");
-        test.log(Status.PASS,"Setting data done");
+        test.log(Status.PASS,"Setting data done", SeleniumHelper.getScreenshot(driver));
         hotelSearchPage.setTravellers(2,5);
-        test.log(Status.PASS,"Setting travelers done");
+        test.log(Status.PASS,"Setting travelers done", SeleniumHelper.getScreenshot(driver));
         hotelSearchPage.performSearch();
         test.log(Status.PASS,"performing search done");
+
+        test.log(Status.PASS,"Screenshot", MediaEntityBuilder.createScreenCaptureFromPath("src/test/resources/screenshots/screenshot.png").build());
 
 
         ResultsPage resultsPage=new ResultsPage(driver);
